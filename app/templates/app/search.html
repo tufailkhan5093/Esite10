@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Search{% endblock title %}
+{% block main-content %}
+
+<div class="col-sm-8 offset-sm-1 container text-center">
+    <h4 class="bg-info text-center text-white my-5 offset-sm-4" style="height: 40px; padding-top: 5px; border-radius: 50px;">Search Results</h4>
+    <div class="mx-3">
+       <div class="col-sm-8 offset-sm-4">
+           <div class="row">
+            {% if object_list %}
+               {% for product in object_list %}
+               
+               <div class="col-sm-4 text-center mb-4">
+                   <a href="{% url 'product-detail' product.id %}" class="btn">
+                       <div class="item">
+                           <img src="{{product.product_image.url}}" alt="" height="150" class="">
+                           <div class="fw-bold">{{product.title}}</div>
+                           <div class="fw-bold">Rs. {{product.discount_price}}
+                               <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+                           </div>
+        
+                       </div>
+                   </a>
+               </div>
+        
+               {% endfor %}
+            {% else %}
+            <h5>No Result Found</h5>
+            {% endif %}
+           </div>
+          </div>
+    </div>
+</div>
+{% endblock main-content %}

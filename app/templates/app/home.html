@@ -1,0 +1,219 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Home{% endblock title %} {% block banner_slider %}
+<!--Banner Slider-->
+
+<div
+  id="carouselExampleControls"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="{% static 'cr3.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+       
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'cr4.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'cr5.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'cr6.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+  </div>
+  <a
+    class="carousel-control-prev"
+    href="#carouselExampleControls"
+    role="button"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a
+    class="carousel-control-next"
+    href="#carouselExampleControls"
+    role="button"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div>
+<!-- End Banner Slider -->
+{% endblock banner_slider %} {% block livesale %}
+<!-- Live Sale Section -->
+<div class="container">
+  <div class="row bg-danger text-center p-2 mt-2 text-white border-bottom shadow" style="border-radius: 100px;">
+    <h1>SALE IS LIVE NOW</h1>
+    <span>5% Instant Discount on Axis Bank Credit and Debit Card</span>
+    <small class="fw-lighter"
+      >Term and Condition Applied (For details visit Bank's official
+      Website)</small
+    >
+  </div>
+</div>
+<!-- End Live Sale Section -->
+{% endblock livesale %} {% block main-content %}
+<!-- 1st Product Slider -->
+<div class="mx-3">
+  <div class="text-center">
+    <h2 class="text-center mt-2 bg-info text-white shadow" style="width: 50%;height: 60px; margin-left: 25%; border-radius: 100px; padding-top: 10px;">Laptops</h2>
+  </div>
+  <!-- Slider 2 -->
+  <div class="owl-carousel" id="slider3">
+    {% for m in laptops %}
+    <a href="{% url 'product-detail' m.id %}" class="btn"
+      ><div class="item">
+        <img src="{{m.product_image.url}}" alt="" height="200px" /><span
+          class="fw-bold"
+          >{{m.title}}</span
+        ><br /><span class="fs-5">{{m.selling_price}}</span>
+      </div></a
+    >
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+<div class="m-3 ">
+  <div class="text-center">
+    <h2 class="text-center mt-5 bg-info text-white shadow" style="width: 50%;height: 60px; margin-left: 25%; border-radius: 100px; padding-top: 10px;">Bottom Wears</h2>
+  </div>
+  
+  <!-- Slider 1 -->
+  <div class="owl-carousel" id="slider1">
+    {% for b in bottomwear %}
+    <a href="{% url 'product-detail' b.id %}" class="btn"
+      ><div class="item">
+        <img src="{{b.product_image.url}}" alt="" height="300px"  width="100px"/><span
+          class="fw-bold"
+          >{{b.title}}</span
+        ><br /><span class="fs-5">{{b.selling_price}}</span>
+      </div></a
+    >
+    {% endfor %}
+  </div>
+</div>
+<!-- End 1st Product Slider -->
+
+<!-- Payment Info Section -->
+<div class="container my-2">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/debit.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/easy.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/ubl.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/hbl.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Payment Info Section -->
+
+<!-- 2nd Product Slider -->
+<div class="mx-3">
+  <div class="text-center">
+    <h2 class="text-center mt-5 bg-info text-white shadow" style="width: 50%;height: 60px; margin-left: 25%; border-radius: 100px; padding-top: 10px;">Top Wears</h2>
+  </div>
+  <!-- Slider 2 -->
+  <div class="owl-carousel" id="slider2">
+    {% for tp in topwear %}
+    <a href="{% url 'product-detail' tp.id %}" class="btn"
+      ><div class="item">
+        <img
+          src="{{tp.product_image.url}}"
+          alt=""
+          height="300px"
+          
+        /><span class="fw-bold">{{tp.title}}</span><br /><span class="fs-5"
+          >{{tp.selling_price}}</span
+        >
+      </div></a
+    >
+    {% endfor %}
+  </div>
+</div>
+<!-- End 2nd Product Slider -->
+
+<div class="mx-3">
+  <div class="text-center">
+    <h2 class="text-center mt-5 bg-info text-white shadow" style="width: 50%;height: 60px; margin-left: 25%; border-radius: 100px; padding-top: 10px;">Mobile Phones</h2>
+  </div>
+  <!-- Slider 2 -->
+  <div class="owl-carousel" id="slider3">
+    {% for m in mobiles %}
+    <a href="{% url 'product-detail' m.id %}" class="btn"
+      ><div class="item">
+        <img src="{{m.product_image.url}}" alt="" height="220px" /><span
+          class="fw-bold"
+          >{{m.title}}</span
+        ><br /><span class="fs-5">{{m.selling_price}}</span>
+      </div></a
+    >
+    {% endfor %}
+  </div>
+</div>
+
+
+
+{% endblock main-content %}

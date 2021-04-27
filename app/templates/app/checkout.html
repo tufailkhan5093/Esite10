@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Check Out{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row mt-5">
+  <div class="col-sm-6">
+    <h4 class="bg-info text-center text-white" style="height: 40px; padding-top: 5px; border-radius: 50px;">Order Summary</h4>
+    <hr>
+    {% for item in cartitem %}
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5>Product: {{item.product.title}}</h5>
+          <p>Quantity: {{item.quantity}}</p>
+          <p class="fw-bold">Price: {{item.total_cost}}</p>
+        </div>
+      
+      </div>
+      {% endfor %}
+      <p class="fw-bold">Total + Shipping Chareges =Rs : {{totalamount}}/-</p>
+    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+  </div>
+  <div class="col-sm-4 offset-sm-1">
+    <h4 class="bg-info text-center text-white" style="height: 40px; padding-top: 5px; border-radius: 50px;">Select Shipping Address</h4>
+    <hr>
+   
+    <form action="/paymentdone">
+      {% for ad in add %}
+      <div class="card">
+        <div class="card-body">
+        <h5 class="text-capitalize">{{ad.name}}</h5>
+        <p>{{ad.city}},{{ad.locality}},{{ad.state}},{{ad.zipcode}}</p>
+        </div>
+      </div>
+
+      
+        <div class="form-check mt-2 mb-5">
+          <input class="form-check-input" type="radio" value="{{ad.id}}" name="custid" id="custadd{{forloop.counter}}">
+          <label class="form-check-label fw-bold" for="">
+            Address: {{forloop.counter}} </label>
+         
+        </div>
+        {% endfor %}
+        <div class="text-end">
+          <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
